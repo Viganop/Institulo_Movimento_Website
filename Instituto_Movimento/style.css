@@ -85,11 +85,30 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--dark);
-  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1.5px;
+  background: var(--c1);
+  border-radius: 2px;
+  transition: width 0.25s ease;
 }
 
 .nav-links a:hover {
   color: var(--c1);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-cta {
@@ -133,6 +152,42 @@ body {
   overflow: hidden;
 }
 
+/* ── Hero background keyframes ── */
+@keyframes bandDrift1 {
+  0%   { transform: skewY(-8deg) translateX(0px) translateY(0px); }
+  50%  { transform: skewY(-7.2deg) translateX(18px) translateY(-10px); }
+  100% { transform: skewY(-8deg) translateX(0px) translateY(0px); }
+}
+@keyframes bandDrift2 {
+  0%   { transform: skewY(-8deg) translateX(0px) translateY(0px); }
+  50%  { transform: skewY(-8.8deg) translateX(-14px) translateY(12px); }
+  100% { transform: skewY(-8deg) translateX(0px) translateY(0px); }
+}
+@keyframes bandDrift3 {
+  0%   { transform: skewY(-8deg) translateX(0px) translateY(0px); }
+  50%  { transform: skewY(-7.5deg) translateX(10px) translateY(-8px); }
+  100% { transform: skewY(-8deg) translateX(0px) translateY(0px); }
+}
+@keyframes dotsDrift {
+  0%   { background-position: 0px 0px; }
+  100% { background-position: 40px 40px; }
+}
+@keyframes circleLg {
+  0%   { transform: translate(0px, 0px); }
+  50%  { transform: translate(-18px, -14px); }
+  100% { transform: translate(0px, 0px); }
+}
+@keyframes circleMd {
+  0%   { transform: translate(0px, 0px); }
+  50%  { transform: translate(14px, -20px); }
+  100% { transform: translate(0px, 0px); }
+}
+@keyframes circleSm {
+  0%   { transform: translate(0px, 0px); }
+  50%  { transform: translate(-10px, 16px); }
+  100% { transform: translate(0px, 0px); }
+}
+
 /* 3 diagonal ciano bands */
 .hero-bg {
   position: absolute;
@@ -153,16 +208,19 @@ body {
 .band-1 {
   background: var(--c1);
   top: -10%;
+  animation: bandDrift1 18s ease-in-out infinite;
 }
 
 .band-2 {
   background: var(--c2);
   top: 28%;
+  animation: bandDrift2 22s ease-in-out infinite;
 }
 
 .band-3 {
   background: var(--c3);
   top: 65%;
+  animation: bandDrift3 26s ease-in-out infinite;
 }
 
 /* dot overlay */
@@ -172,6 +230,7 @@ body {
   background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1.5px, transparent 1.5px);
   background-size: 40px 40px;
   pointer-events: none;
+  animation: dotsDrift 20s linear infinite;
 }
 
 /* decorative circles */
@@ -182,6 +241,7 @@ body {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.07);
   pointer-events: none;
+  animation: circleLg 20s ease-in-out infinite;
 }
 
 .circle-md {
@@ -191,6 +251,7 @@ body {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
   pointer-events: none;
+  animation: circleMd 25s ease-in-out infinite;
 }
 
 .circle-sm {
@@ -200,6 +261,7 @@ body {
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.15);
   pointer-events: none;
+  animation: circleSm 16s ease-in-out infinite;
 }
 
 /* hero content */
@@ -358,18 +420,41 @@ body {
 /* ── SECTION SHARED ── */
 .section-eyebrow {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--c1);
+  color: #3a3a3a;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.section-eyebrow .eyebrow-text-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-eyebrow::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #3a3a3a;
+  opacity: 0.3;
 }
 
 .eyebrow-light {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.85);
+  flex-direction: row;
+  align-items: center;
+}
+
+.eyebrow-light::after {
+  display: none;
 }
 
 .section-title {
@@ -1041,7 +1126,7 @@ body {
 
 /* Card em destaque — Pilates para Gestantes */
 .servico-card-destaque {
-  background: linear-gradient(145deg, #f0faf9 0%, #e0f5f3 100%);
+  background: linear-gradient(145deg, #07fce369 0%, #e0f5f3 100%);
   border: 2px solid var(--c1);
   box-shadow: 0 8px 32px rgba(14, 158, 148, 0.18);
   position: relative;
@@ -1292,6 +1377,16 @@ body {
   overflow: hidden;
 }
 
+.contato-particles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .contato-bg-dots {
   position: absolute;
   inset: 0;
@@ -1318,6 +1413,12 @@ body {
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.8);
+}
+
+
+.dark-gray {
+  color: #62f0c1 !important;
+  font-style: inherit;
 }
 
 .title-dark-charcoal {
@@ -1353,7 +1454,7 @@ body {
 
 .contato-card-whatsapp {
   background: #25D366;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  box-shadow: 0 8px 34px rgba(37,211,102,0.35);
 }
 .contato-card-whatsapp:hover {
   box-shadow: 0 8px 32px rgba(37,211,102,0.45);
