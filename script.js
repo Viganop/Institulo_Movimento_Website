@@ -31,7 +31,29 @@
   });
 
 
-  // ── Nav CTA click feedback ──
+  // ── Hamburger menu (mobile) ──
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('navMobileMenu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function () {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Fechar ao clicar em qualquer link do menu mobile
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+
+
   const navCta = document.querySelector('.nav-cta');
   if (navCta) {
     navCta.addEventListener('click', function () {

@@ -37,6 +37,30 @@
           </button>
         </div>
       </div>
+
+      <!-- Hamburguer (só mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Menu mobile dropdown -->
+    <div class="nav-mobile-menu" id="navMobileMenu">
+      <ul class="nav-mobile-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#estrategia">Estratégia</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#galeria">Espaço</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+      </ul>
+      <button class="nav-mobile-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'}); document.getElementById('navMobileMenu').classList.remove('open'); document.getElementById('navHamburger').classList.remove('open'); document.getElementById('navHamburger').setAttribute('aria-expanded','false');">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Fale Conosco
+      </button>
     </div>
   </nav>
   <div class="nav-accent"></div>
@@ -71,6 +95,10 @@
         <div class="hero-btns">
           <a href="https://wa.me/5511950930770?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20no%20Instituto%20do%20Movimento." target="_blank" rel="noopener" class="btn-primary">Agendar Consulta</a>
           <a href="#estrategia" class="btn-outline">Nossa Metodologia</a>
+        </div>
+
+        <div class="hero-image-mobile">
+          <img src="hero-image.png" alt="Equipe Instituto do Movimento" class="hero-image-mobile-img"/>
         </div>
       </div>
 
